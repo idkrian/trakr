@@ -7,13 +7,24 @@ const Home = () => {
   const Tab = createBottomTabNavigator();
 
   return (
-    <Tab.Navigator initialRouteName="Dashboard">
+    <Tab.Navigator
+      initialRouteName="Dashboard"
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: "#6450dd",
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        },
+        tabBarActiveTintColor: "white",
+        tabBarShowLabel: false,
+      }}
+    >
       <Tab.Screen
         name="Dashboard"
         component={Dashboard}
         options={{
           tabBarIcon: () => {
-            return <MaterialIcons name="home" size={24} color="black" />;
+            return <MaterialIcons name="home" size={24} color="white" />;
           },
           headerShown: false,
         }}

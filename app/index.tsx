@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Initial from "./pages/Initial";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 export type RootStackParamList = {
   Home: undefined;
   Initial: undefined;
