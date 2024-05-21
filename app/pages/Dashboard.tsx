@@ -1,104 +1,67 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import { View, Text, Button, TouchableOpacity, Dimensions } from "react-native";
+import React from "react";
+import { FontAwesome, FontAwesome5, FontAwesome6 } from "@expo/vector-icons";
+import Holding from "../components/Holding";
+import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
-import { LineChart, CandlestickChart } from "react-native-wagmi-charts";
-import { connectToBinanceWebSocket } from "../services/connection";
-interface CandleStickProps {
-  t: number; // kline start time
-  o: string; // open
-  c: string; // close
-  h: string; // high
-  l: string; // low
-}
-interface CandleStickProps2 {
-  timestamp: number;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-}
-interface LineChartProps {
-  E: number;
-  e: string;
-  p: string;
-  s: string;
-}
-interface LineChartProps2 {
-  timestamp: number;
-  value: number;
-}
+
 const Dashboard = () => {
-  const [candlesticks, setCandlesticks] = useState<CandleStickProps2[]>([]);
-  const [line, setLine] = useState<LineChartProps2[]>([]);
-
-  // useEffect(() => {
-  //   const lineChart = connectToBinanceWebSocket(
-  //     "wss://nbstream.binance.com/eoptions/ws/BTCUSDT@index",
-  //     (line: LineChartProps) => {
-  //       Object.keys(line || {});
-  //       setLine((prevLine) => [
-  //         ...prevLine,
-  //         {
-  //           timestamp: Number(line.E),
-  //           value: Number(line.p),
-  //         },
-  //       ]);
-  //     }
-  //   );
-  //   const klineChart = connectToBinanceWebSocket(
-  //     "wss://stream.binance.com:9443/ws/btcusdt@kline_1m",
-  //     (kline: CandleStickProps) => {
-  //       setCandlesticks((prevCandlesticks) => [
-  //         ...prevCandlesticks,
-  //         {
-  //           timestamp: kline.t,
-  //           open: Number(kline.o),
-  //           high: Number(kline.h),
-  //           low: Number(kline.l),
-  //           close: Number(kline.c),
-  //         },
-  //       ]);
-  //     }
-  //   );
-
-  //   return () => {
-  //     klineChart.close();
-  //     lineChart.close();
-  //   };
-  // }, []);
-
-  // if (line.length <= 1) {
-  //   return (
-  //     <LinearGradient
-  //       colors={["#13355a", "#15213b"]}
-  //       className="flex-1 h-screen items-center p-2"
-  //     >
-  //       <Text className="text-white text-xl">Ta carregano pae</Text>
-  //     </LinearGradient>
-  //   );
-  // }
+  // let [fontsLoaded] = useFonts({
+  //   "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
+  //   "Poppins-Semibold": require("../../assets/fonts/Poppins-SemiBold.ttf"),
+  // });
   return (
-    <View className="flex-1 h-screen items-center p-2 bg-[#070707]">
-      <Text className="text-white text-xl">Dashboard</Text>
+    <View className="flex-1 p-2 bg-[#070707]">
+      <Text className="text-white flex flex-initial text-2xl my-5">
+        Hello Rian
+      </Text>
+      <LinearGradient
+        colors={["#ED1E79", "#662D8C"]}
+        className="bg-amber-200 rounded-2xl p-4"
+      >
+        <Text className="text-xl text-white">Current Balance</Text>
+        <Text className="text-2xl text-white font-bold">$87,430.12</Text>
+      </LinearGradient>
 
-      {/* <TouchableOpacity className="bg-[#17426d] w-11/12 h-56 rounded-xl my-4">
-        <Text className="text-white text-xl">Preço Bitcoin</Text>
+      <View className="flex flex-row justify-between my-5">
+        <TouchableOpacity className="flex bg-[#6552FE] rounded-2xl py-2 px-3 items-center w-[48%]">
+          <Text className="text-lg text-white">Deposit</Text>
+        </TouchableOpacity>
 
-        <LineChart.Provider data={line}>
-          <LineChart>
-            <LineChart.Path />
-          </LineChart>
-        </LineChart.Provider>
-      </TouchableOpacity>
+        <TouchableOpacity className="flex bg-transparent border border-white rounded-2xl py-1 px-3 items-center w-[48%]">
+          <Text className="text-lg text-white ">Deposit</Text>
+        </TouchableOpacity>
+      </View>
 
-      <TouchableOpacity className="bg-[#17426d] w-11/12 h-56 rounded-xl my-4">
-        <Text className="text-white text-xl">Candle Chart</Text>
-        <CandlestickChart.Provider data={candlesticks}>
-          <CandlestickChart width={300} height={200}>
-            <CandlestickChart.Candles />
-          </CandlestickChart>
-        </CandlestickChart.Provider>
-      </TouchableOpacity> */}
+      <View className="">
+        <Text className="text-white font-poppins flex flex-initial text-2xl my-5 font-extrabold">
+          Holdings
+        </Text>
+        <Holding
+          coinName={"Ethereum"}
+          coinSymbol={"ETH"}
+          price={"$503.12"}
+          icon={<FontAwesome5 name="ethereum" size={24} color="white" />}
+        />
+        <Holding
+          coinName={"Bitcoin"}
+          coinSymbol={"BTC"}
+          price={"$503.12"}
+          icon={<FontAwesome name="bitcoin" size={24} color="white" />}
+        />
+        <Holding
+          coinName={"Litecoin"}
+          coinSymbol={"LTC"}
+          price={"$503.12"}
+          icon={<FontAwesome6 name="litecoin-sign" size={24} color="white" />}
+        />
+        <Holding
+          coinName={"Ripple"}
+          coinSymbol={"XRP"}
+          price={"$503.12"}
+          icon={<FontAwesome5 name="ethereum" size={24} color="white" />}
+        />
+      </View>
     </View>
   );
 };
