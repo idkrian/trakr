@@ -1,68 +1,49 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  AntDesign,
-  Entypo,
-  Feather,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
-import Dashboard from "./Dashboard";
-import Details from "./Details";
-import Profile from "./Profile";
+import { Text, TouchableOpacity, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 
+type Nav = {
+  navigate: (value: string) => void;
+};
 const Home = () => {
-  const Tab = createBottomTabNavigator();
-
+  const navigation = useNavigation<Nav>();
   return (
-    <Tab.Navigator
-      initialRouteName="Dashboard"
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: "#121212",
-          height: 60,
-        },
-        tabBarActiveTintColor: "#6552FE",
-        // tabBarShowLabel: false,
-      }}
+    <LinearGradient
+      colors={["#13355a", "#15213b"]}
+      className="flex-1 h-screen items-center justify-center p-20"
     >
-      <Tab.Screen
-        name="Dashboard"
-        component={Dashboard}
-        options={{
-          tabBarIcon: ({ color }) => {
-            return (
-              <MaterialCommunityIcons
-                name="view-dashboard-outline"
-                size={24}
-                color={color}
-              />
-            );
-          },
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Details"
-        component={Details}
-        options={{
-          tabBarIcon: ({ color }) => {
-            return <Entypo name="line-graph" size={24} color={color} />;
-          },
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarIcon: ({ color }) => {
-            return <Feather name="user" size={24} color={color} />;
-          },
-          headerShown: false,
-        }}
-      />
-    </Tab.Navigator>
+      <View className="flex-1 w-32 items-center justify-center">
+        <View className="flex flex-row justify-between w-24 my-6 h-24 ">
+          <LinearGradient
+            colors={["#cd46ef", "#3b82f6"]}
+            className="h-1/2 w-6 rounded-xl"
+          />
+          <LinearGradient
+            colors={["#cd46ef", "#3b82f6"]}
+            className="h-full w-6 rounded-xl"
+          />
+          <LinearGradient
+            colors={["#cd46ef", "#3b82f6"]}
+            className="h-1/2 self-end w-6 rounded-xl"
+          />
+        </View>
+        <Text className="text-center text-[#a346ef] text-2xl font-bold italic">
+          Trakr
+        </Text>
+      </View>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Dashboard")}
+        className="justify-end"
+      >
+        <LinearGradient
+          colors={["#cd46ef", "#3b82f6"]}
+          className="px-6 py-1 rounded-3xl"
+        >
+          <Text className="text-white font-medium">Enter</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+    </LinearGradient>
   );
 };
 
