@@ -1,29 +1,77 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Initial from "./pages/Initial";
-import Home from "./pages/home";
-export type RootStackParamList = {
-  Home: undefined;
-  Initial: undefined;
-};
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Entypo, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import Dashboard from "./pages/Dashboard";
+import Details from "./pages/Details";
+import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 
-export default function Index() {
-  const Stack = createNativeStackNavigator<RootStackParamList>();
+const index = () => {
+  const Tab = createBottomTabNavigator();
   return (
-    <Stack.Navigator initialRouteName="Initial">
-      <Stack.Screen
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={({ route }) => ({
+        tabBarIcon: () => {
+          if (route.name === "Home") {
+            return null;
+          }
+        },
+        tabBarStyle: {
+          backgroundColor: "#121212",
+          height: 60,
+        },
+        tabBarActiveTintColor: "#6552FE",
+        tabBarShowLabel: false,
+      })}
+    >
+      <Tab.Screen
         name="Home"
         component={Home}
         options={{
           headerShown: false,
+          tabBarStyle: { display: "none" },
+          tabBarButton: () => null,
         }}
       />
-      <Stack.Screen
-        name="Initial"
-        component={Initial}
+      <Tab.Screen
+        name="Dashboard"
+        component={Dashboard}
         options={{
+          tabBarIcon: ({ color }) => {
+            return (
+              <MaterialCommunityIcons
+                name="view-dashboard-outline"
+                size={24}
+                color={color}
+              />
+            );
+          },
           headerShown: false,
         }}
       />
-    </Stack.Navigator>
+      <Tab.Screen
+        name="Details"
+        component={Details}
+        options={{
+          tabBarIcon: ({ color }) => {
+            return <Entypo name="line-graph" size={24} color={color} />;
+          },
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color }) => {
+            return <Feather name="user" size={24} color={color} />;
+          },
+          headerShown: false,
+        }}
+      />
+    </Tab.Navigator>
   );
-}
+};
+
+export default index;

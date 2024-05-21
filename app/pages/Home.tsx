@@ -1,12 +1,13 @@
 import React from "react";
-import { Button, Text, TouchableOpacity, View } from "react-native";
-import { NativeStackScreenProps } from "react-native-screens/lib/typescript/native-stack/types";
-import { RootStackParamList } from "..";
+import { Text, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Initial">;
-
-const Initial = ({ navigation }: Props) => {
+type Nav = {
+  navigate: (value: string) => void;
+};
+const Home = () => {
+  const navigation = useNavigation<Nav>();
   return (
     <LinearGradient
       colors={["#13355a", "#15213b"]}
@@ -32,7 +33,7 @@ const Initial = ({ navigation }: Props) => {
         </Text>
       </View>
       <TouchableOpacity
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("Dashboard")}
         className="justify-end"
       >
         <LinearGradient
@@ -46,4 +47,4 @@ const Initial = ({ navigation }: Props) => {
   );
 };
 
-export default Initial;
+export default Home;
