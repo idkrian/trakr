@@ -6,8 +6,8 @@ export type RootStackParamList = {
   Initial: undefined;
 };
 
+const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function Index() {
-  const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator initialRouteName="Initial">
       <Stack.Screen
