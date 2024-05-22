@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 interface HoldingProps {
@@ -7,6 +7,7 @@ interface HoldingProps {
   price: string;
   icon: React.ReactNode;
   graph?: boolean;
+  priceSymbol?: string;
 }
 
 const Holding = ({
@@ -15,9 +16,10 @@ const Holding = ({
   price,
   icon,
   graph,
+  priceSymbol,
 }: HoldingProps) => {
   return (
-    <View className="flex flex-row my-4 p-2 gap-4 justify-between">
+    <View className="flex flex-row my-4 p-2 gap-4 justify-between items-center align-middle">
       <View className="h-12 w-14 bg-[#212125] rounded-xl items-center justify-center flex flex-row">
         {icon}
       </View>
@@ -27,7 +29,10 @@ const Holding = ({
       </View>
       {graph && (
         <View>
-          <Text className="text-white text-xl font-extrabold">aaaaaaaaa</Text>
+          <Image
+            style={{ width: 50, height: 50 }}
+            source={require("../../assets/images/Frame 1000000809graph.png")}
+          />
         </View>
       )}
       <View className="self-end">
@@ -35,7 +40,7 @@ const Holding = ({
           {price}
         </Text>
         <Text className="text-white flex flex-initial text-sm font-extralight text-right">
-          50 ETH
+          {priceSymbol}
         </Text>
       </View>
     </View>

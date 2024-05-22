@@ -16,32 +16,27 @@ const Home = () => {
       <View className="flex-1 w-32 items-center justify-center">
         <View className="flex flex-row justify-between w-24 my-6 h-24 ">
           <LinearGradient
-            colors={["#cd46ef", "#3b82f6"]}
+            colors={["#cd46ef", "#6552FE"]}
             className="h-1/2 w-6 rounded-xl"
           />
           <LinearGradient
-            colors={["#cd46ef", "#3b82f6"]}
+            colors={["#cd46ef", "#6552FE"]}
             className="h-full w-6 rounded-xl"
           />
           <LinearGradient
-            colors={["#cd46ef", "#3b82f6"]}
+            colors={["#cd46ef", "#6552FE"]}
             className="h-1/2 self-end w-6 rounded-xl"
           />
         </View>
-        <Text className="text-center text-[#a346ef] text-2xl font-bold italic">
+        <Text className="text-center text-[#6552FE] text-4xl font-bold italic shadow-md">
           Trakr
         </Text>
       </View>
       <TouchableOpacity
         onPress={() => navigation.navigate("Dashboard")}
-        className="justify-end"
+        className="justify-end px-7 py-2 rounded-3xl bg-[#6552FE]"
       >
-        <LinearGradient
-          colors={["#cd46ef", "#3b82f6"]}
-          className="px-6 py-1 rounded-3xl"
-        >
-          <Text className="text-white font-medium">Enter</Text>
-        </LinearGradient>
+        <Text className="text-white font-medium">Enter</Text>
       </TouchableOpacity>
     </LinearGradient>
   );

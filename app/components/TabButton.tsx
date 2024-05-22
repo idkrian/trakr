@@ -7,28 +7,11 @@ interface CustomButtonProps {
 }
 const TabButton = ({ name, isActive, onPress }: CustomButtonProps) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Text style={styles.text}>{name}</Text>
-      {isActive && <View style={styles.underline} />}
+    <TouchableOpacity onPress={onPress} className="align-middle justify-center">
+      <Text className="text-lg font-semibold text-white">{name}</Text>
+      {isActive && <View className="h-1 bg-[#6552FE] w-full" />}
     </TouchableOpacity>
   );
 };
-const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-  },
-  text: {
-    fontSize: 16,
-    color: "white",
-  },
-  underline: {
-    height: 3,
-    backgroundColor: "#6552FE",
-    width: "100%",
-    marginTop: 5,
-  },
-});
 
 export default TabButton;
